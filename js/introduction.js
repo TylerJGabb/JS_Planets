@@ -35,7 +35,7 @@ var sunM = new THREE.MeshBasicMaterial({
 var sun = new THREE.Mesh(sunG,sunM);
 
 var controls = new THREE.OrbitControls( camera )
-camera.position.set(0,20,100);
+camera.position.set(0,0,100);
 controls.update();
 
 var ref_geometry = new THREE.CircleGeometry(50,32);
