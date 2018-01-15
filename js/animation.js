@@ -1,3 +1,15 @@
+/*
+
+    USE DAT.GUI for GUI MENU
+
+
+
+*/
+
+
+
+
+
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 var renderer = new THREE.WebGLRenderer();
@@ -7,6 +19,7 @@ var controls = new THREE.OrbitControls( camera )
 camera.position.set(0,0,100);
 camera.lookAt(new THREE.Vector3(0,0,0));
 controls.update();
+
 var planets = [];
 var root = createPlanet(
     "Sun",
@@ -22,6 +35,10 @@ function createPlanet(name,hexColor,radius,orbitalGeometry,framerPerRevolution){
     scene.add(p.mesh);
     //update list of available planets;
     return p;
+}
+
+function addMoon(planet,moon){
+    planet.addMoon(moon);
 }
 
 // var sun = new Planet(
