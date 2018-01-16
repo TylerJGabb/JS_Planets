@@ -45,7 +45,10 @@ function createPlanet(name,hexColor,radius,orbitalGeometry,framerPerRevolution){
     //p.folder = ....
     planets.push(p);
     scene.add(p.mesh);
-    planetsGui.addFolder(name);
+    var folder = planetsGui.addFolder(name);
+    folder.add(p,'xRadius',0,100);
+    var moons = folder.addFolder("Moons");
+    
     return p;
 }
 
