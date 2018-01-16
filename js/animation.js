@@ -1,39 +1,51 @@
 /*
 
     USE DAT.GUI for GUI MENU
+    http://learningthreejs.com/blog/2011/08/14/dat-gui-simple-ui-for-demos/
 
 
 
 */
 
+// =============================================================
+//  XXX   XXXXX  XXXXX  X   X  XXXX           XXXX  X   X  XXXXX
+// X      X        X    X   X  X   X         X      X   X    X
+//  XXX   XXXXX    X    X   X  XXXX          X  XX  X   X    X
+//     X  X        X    X   X  X             X   X  X   X    X
+//  XXX   XXXXX    X     XXX   X              XXX    XXX   XXXXX
+// =============================================================
+
+
+var gui = new dat.GUI({autoPlace : false, width : 300})
+var container = document.getElementById('outer');
+container.appendChild(gui.domElement);
 
 
 
+var planetsGui = gui.addFolder('Planets');
+planetsGui.open();
+var obj = {NewPlanet:function(){alert('planet added')}};
+gui.add(obj,'NewPlanet');
+
+
+//
 
 var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+var camera = new THREE.PerspectiveCamera( 75, 1000 / 1000, 0.1, 1000 );
 var renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerWidth, window.innerHeight - 100);
-document.body.appendChild( renderer.domElement );
+renderer.setSize( 1000, 1000);
+document.getElementById('outer').appendChild( renderer.domElement );
 var controls = new THREE.OrbitControls( camera )
-camera.position.set(0,0,100);
-camera.lookAt(new THREE.Vector3(0,0,0));
-controls.update();
+
 
 var planets = [];
-var root = createPlanet(
-    "Sun",
-    0xffff00,
-    10,
-    {xRadius : 0, yRadius : 0, zRadius : 0},
-    0
-)
 
 function createPlanet(name,hexColor,radius,orbitalGeometry,framerPerRevolution){
     var p = new Planet(name,hexColor,radius,orbitalGeometry,framerPerRevolution);
+    //p.folder = ....
     planets.push(p);
     scene.add(p.mesh);
-    //update list of available planets;
+    planetsGui.addFolder(name);
     return p;
 }
 
@@ -41,79 +53,46 @@ function addMoon(planet,moon){
     planet.addMoon(moon);
 }
 
-// var sun = new Planet(
-//     "Sun",
-//     0xffff00, //yellow
-//     10,
-//     {xRadius : 0, yRadius : 0, zRadius : 0},
-//     0
-// )
+var root = createPlanet(
+    "Sun",
+    0xffff00,
+    10,
+    {xRadius : 0, yRadius : 0, zRadius : 0},
+    0
+);
 
-// var earth = new Planet(
-//     "Earth",
-//     0x0000ff,
-//     3,
-//     {xRadius : 50, yRadius : 50},
-//     240
-// )
+var earth = createPlanet(
+    "Earth",
+    0x0000ff,
+    3,
+    {xRadius : 30, yRadius: 30},
+    240
+)
 
-// var moon = new Planet(
-//     "Earth's Moon",
-//     0xffffff,
-//     1,
-//     {xRadius : 5, yRadius : 2, zRadius : 5 },//orbit sorta tilted
-//     60
-// )
+addMoon(root,earth);
 
-// var mars = new Planet(
-//     "Mars",
-//     0xa1251b,
-//     2,
-//     {xRadius : 80, yRadius : 80},
-//     300
-// )
+var moon = createPlanet(
+    "Moon",
+    0xffffff,
+    1,
+    {xRadius:10,yRadius:10},
+    60
+)
 
-// //lolololol
-// var nibiru = new Planet(
-//     "Nibiru",
-//     0x551A8B,
-//     7,
-//     {xRadius : 100, yRadius : 30, zRadius : 100 },
-//     550
-// )
-
-// var nibiruMoon = new Planet(
-//     "Nibiru's Moon",
-//     0xffffff,
-//     3,
-//     {xRadius: 12, zRadius : 12},
-//     120
-// )
-
-// //nibiru.addMoon(nibiruMoon);
-
-// var mercury = new Planet(
-//     "Mercury",
-//     0xa9a9a9,
-//     2.5,
-//     {xRadius : 25, yRadius : 25 },
-//     160
-// )
-
-// earth.addMoon(moon);
-// sun.addMoon(earth);
-// sun.addMoon(mars);
-// sun.addMoon(nibiru);
-// sun.addMoon(mercury);
-// scene.add(sun.mesh);
-// scene.add(earth.mesh);
-// scene.add(moon.mesh);
-// scene.add(mars.mesh);
-// scene.add(nibiru.mesh);
-// scene.add(mercury.mesh);
+addMoon(earth,moon)
 
 console.log(root)
 
+var size = 100;
+var divisions = 15;
+var grid = new THREE.GridHelper(size, divisions, 0xff0000, 0xffffff);
+scene.add(grid);
+grid.rotation.x += Math.PI/2;
+
+
+camera.position.set(0,-50,50);
+camera.lookAt(new THREE.Vector3(0,0,0));
+controls.update();
 function animate(){
     requestAnimationFrame( animate );
     root.update()//recursive
