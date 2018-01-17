@@ -5,6 +5,13 @@ div#outer{
     height : 1000px;
 }
 
+div#interactive-menu{
+    background: blue;
+    position : relative;
+    width : 400px;
+    height : 1000px;
+}
+
 div#menu{
     position : absolute;
     background-color: white;

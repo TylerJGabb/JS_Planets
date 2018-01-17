@@ -95,4 +95,10 @@ class Moon extends SSB {
             this.theta = 0;
         }
     }
+
+    setPlanet(planet){
+        this.planet = planet;
+    }
+
+    
 }

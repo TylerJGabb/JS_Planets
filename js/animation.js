@@ -28,15 +28,14 @@ var obj = {NewPlanet:function(){alert('planet added')}};
 gui.add(obj,'NewPlanet');
 
 
-//
+// SETUP THE SCENE
 
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, 1000 / 1000, 0.1, 1000 );
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize( 1000, 1000);
-document.getElementById('outer').appendChild( renderer.domElement );
+container.appendChild( renderer.domElement );
 var controls = new THREE.OrbitControls( camera )
-
 
 var planets = [];
 
@@ -86,8 +85,8 @@ addMoon(earth,moon)
 
 console.log(root)
 
-var size = 100;
-var divisions = 15;
+var size = 200;
+var divisions = 30;
 var grid = new THREE.GridHelper(size, divisions, 0xff0000, 0xffffff);
 scene.add(grid);
 grid.rotation.x += Math.PI/2;
