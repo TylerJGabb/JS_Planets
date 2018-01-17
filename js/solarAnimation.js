@@ -1,5 +1,8 @@
-var scene = new THREE.Scene();
 var container = document.getElementById('animation-window');
+var menu = document.getElementById('interactive-menu');
+
+
+var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(1000,1000);
@@ -41,33 +44,6 @@ function animate(){
     renderer.render( scene, camera );
 }
 
-animate();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+menu.margin = container.margin;
 
 animate();

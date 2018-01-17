@@ -1,7 +1,7 @@
 
 //Solar System Body
 class SSB {
-    constructor(name,color,radius,orbitalGeometry){
+    constructor(name,color,radius,orbitalGeometry,scene){
         this.parameters = {name,color,radius,orbitalGeometry}
         this.name = name;
         this.color = color;
@@ -100,5 +100,5 @@ class Moon extends SSB {
         this.planet = planet;
     }
 
-    
+
 }

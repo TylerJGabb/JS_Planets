@@ -1,5 +1,5 @@
 div#animation-window{
-    position : relative;
+    position : relative;/*setting this to ABSOLUTE breaks OrbitControls*/
     background-color: red;
     width : 1000px;
     height : 1000px;
@@ -14,8 +14,10 @@ div#interactive-menu{
     height : 1000px;
     left : 1000px;
     top : 0;
+    /*margin : 10px;*/
 }
 
-canvas{
-  position : absolute;
+body {
+  margin : 0px;
+  /*this needs to be set to 0px so that everything sits flush with the window*/
 }
