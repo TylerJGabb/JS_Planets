@@ -1,12 +1,11 @@
 div#animation-window{
-    position : absolute;
+    position : relative;
     background-color: red;
     width : 1000px;
     height : 1000px;
     left : 0;
     top : 0;
 }
-
 
 div#interactive-menu{
     background: #ff851b;
@@ -15,4 +14,8 @@ div#interactive-menu{
     height : 1000px;
     left : 1000px;
     top : 0;
+}
+
+canvas{
+  position : absolute;
 }

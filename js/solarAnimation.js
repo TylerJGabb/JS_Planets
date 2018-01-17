@@ -4,7 +4,8 @@ var camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(1000,1000);
 container.appendChild(renderer.domElement);
-var controls = new THREE.OrbitControls(camera);
+var controls = new THREE.OrbitControls( camera );
+controls.update();
 
 //create the root of the solarsystem structure;
 var root = new Star("Sun",0xffff00,10);
@@ -30,7 +31,7 @@ scene.add(grid);
 
 //put the camera some place nice and look at the sun
 camera.position.set(0,-50,50);
-camera.lookAt(root.mesh.position);
+camera.lookAt(new THREE.Vector3(0,0,0));
 controls.update();
 
 function animate(){
@@ -39,6 +40,8 @@ function animate(){
     controls.update();
     renderer.render( scene, camera );
 }
+
+animate();
 
 
 
@@ -68,5 +71,3 @@ function animate(){
 
 
 animate();
-
-
