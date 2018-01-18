@@ -5,30 +5,8 @@ div#outer{
     height : 1000px;
 }
 
-div#interactive-menu{
-    background: blue;
-    position : relative;
-    width : 400px;
-    height : 1000px;
-}
-
-div#menu{
-    position : absolute;
-    background-color: white;
-    color : red;
-    width : 50%;
-    top : 0;
-    right : 0;
-    z-index: 10;
-}
-
 .dg.main{
     z-index: 7;
     position: absolute;
     right : 0;
-}
-
-canvas{
-    position: absolute;
-    z-index: 5;
 }

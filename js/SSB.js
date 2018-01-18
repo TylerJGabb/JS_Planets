@@ -1,7 +1,7 @@
 
 //Solar System Body
 class SSB {
-    constructor(name,color,radius,orbitalGeometry,scene){
+    constructor(name,color,radius,orbitalGeometry){
         this.parameters = {name,color,radius,orbitalGeometry}
         this.name = name;
         this.color = color;
@@ -26,8 +26,15 @@ class SSB {
 
 class Star extends SSB {
     constructor(name,color,radius){
-        super(name,color,radius,{xRadius:0,yRadius:0,zRadius:0});
+        super(name,color,radius,{xRadius:0,yRadius:0,zRadius:0},scene);
         this.planets = [];
+
+        //Below fields are for new moon controlls
+        //they offer a way to store them
+        this.Name = "pick a name for a new planet";
+        this.Radius = 1;
+        this.Color = "#ffffff";
+        this.FramesPerRevolution = 180;
     }
 
     addPlanet(planet){
@@ -40,6 +47,13 @@ class Star extends SSB {
             this.planets[i].update();
         }
     }
+
+    resetGuiUtilities(){
+        this.Name = "pick a name for a new planet";
+        this.Radius = 1;
+        this.Color = "#ffffff";
+        this.FramesPerRevolution = 180;
+    }
 }
 
 
@@ -50,6 +64,21 @@ class Planet extends SSB {
         this.moons = [];
         this.theta = 0;
         this.interval = 2*Math.PI/framesPerRevolution;
+        this.folder = null;
+
+        //Below fields are for new moon controlls
+        //they offer a way to store them
+        this.Name = "pick a name for " + name + "'s new moon";
+        this.Radius = 1;
+        this.Color = "#ffffff";
+        this.FramesPerRevolution = 180;
+    }
+
+    resetGuiUtilities(){
+        this.Name = "pick a name for " + name + "'s new moon";
+        this.Radius = 1;
+        this.Color = "#ffffff";
+        this.FramesPerRevolution = 180;
     }
 
     setStar(star){
@@ -84,6 +113,7 @@ class Moon extends SSB {
         super(name,color,radius,orbitalGeometry);
         this.theta = 0;
         this.interval = 2*Math.PI/framesPerRevolution;
+        this.folder = null;
     }
 
     update(){

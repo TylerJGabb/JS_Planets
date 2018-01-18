@@ -17,6 +17,19 @@ div#interactive-menu{
     /*margin : 10px;*/
 }
 
+.dg.main{
+    right : 0;
+    position: absolute;
+}
+
+p#animation-text{
+    font-size: 30px;
+    color: red;
+    position : absolute;
+    top : 0;
+    width : 400px;
+}
+
 body {
   margin : 0px;
   /*this needs to be set to 0px so that everything sits flush with the window*/
